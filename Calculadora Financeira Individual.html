@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira - Winda`s</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Angkor&display=swap" rel="stylesheet">
+  
+
+
+    <style>
+        body {
+            background-image: url(https://images.pexels.com/photos/2468056/pexels-photo-2468056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+            background-size: cover;
+            text-align: center;
+        }
+
+        h1 {
+
+            font-family: "Angkor", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        h4 {
+
+            font-family: "Angkor", serif;
+            font-weight: 400;
+            font-style: normal;
+
+        }
+
+        input {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            border: none;
+            width: 250px;
+            height: 35px;
+            box-shadow: 4px 4px 0px #3c6a98;
+            font-family: inherit;
+            font-weight: bold;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        button {
+            width: 200px;
+            height: 50px;
+            border: none;
+            border-radius: 0;
+            background-color: #3c6a98;
+            font-family: "Angkor", serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 20px;
+            box-shadow: 4px 4px 0px #000;
+
+        }
+
+        .quadro {
+            width: 800px;
+            height: 900px;
+            margin: auto;
+            background-color: #b0c4dea2;
+            border: solid 2px black;
+
+        }
+
+        .conteúdo {
+            font-family: "Angkor", serif;
+            font-weight: 400;
+            font-style: normal;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="quadro">
+        <h1>Winda's System</h1>
+        <h4>Quantidade de ar-condicionado no seu hotel: </h4> <input type="number" id="input_qtd_ar_condicionado"> <br>
+         <br>
+        <h4>Qual a potência do seu ar-condicionado (BTU): </h4> <input type="number" id="input_potencia_ar_condicionado"> <br>
+        <br>
+        <h4>Quantos dias o seu ar-condicionado fica ligado: </h4> <input type="number" id="input_dias_ar_condicionado"> <br>
+        <br>
+        <h4>Quantas horas por dia seu ar-condicionado fica ligado: </h4> <input type="number" id="input_hr_ar_condicionado"> <br>
+        <br>
+        <h4>Informe quantos quartos do seu hotel foram afetados pelo mofo: </h4> <input type="number" id="input_qtd_quartos_mofo"> <br>
+        <br>
+        <button onclick="Calcular()">Calcular</button> <br>
+        <br>
+        <div class= "conteúdo" id="div_resultado"></div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    function Calcular() {
+        var qtdArCondiconado = Number(input_qtd_ar_condicionado.value);
+        var diasArCondicionado = Number(input_dias_ar_condicionado.value);
+        var hrArCondiconado = Number(input_hr_ar_condicionado.value);
+        var potenciaArCondicionadoBTU = Number(input_potencia_ar_condicionado.value);
+        var potenciaArCondicionadoWatts = potenciaArCondicionadoBTU * 0.293;
+        var consumoKWH = ((potenciaArCondicionadoWatts * hrArCondiconado)*diasArCondicionado) /1000;
+        var custoArCondicionado = (consumoKWH * 0.40) * qtdArCondiconado;
+
+        var qtdQuartosMofo = Number(input_qtd_quartos_mofo.value);
+        var preçoTirarMofo = qtdQuartosMofo * 2400;
+        var gastosTotais = custoArCondicionado + preçoTirarMofo;
+
+        div_resultado.innerHTML = `Adquira nosso sistema Winda's, e economize R$${gastosTotais}`
+    }
+</script>
